@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EverShelf - Emergency Food Storage & Audit Tracker</title>
+  <title>EverShelf - Track, Plan, Waste Nothing</title>
+  <meta name="description" content="EverShelf connects what you have, what you'll cook, and what you need to buy — so no food goes to waste. Scan items, plan meals, share extras with friends.">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -18,42 +19,66 @@
       background: linear-gradient(135deg, #166534 0%, #16a34a 100%);
       color: #fff;
       text-align: center;
-      padding: 4rem 1.5rem;
+      padding: 5rem 1.5rem 4rem;
     }
     .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
+      font-size: 2.75rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
     }
     .hero .tagline {
-      font-size: 1.125rem;
-      opacity: 0.9;
-      max-width: 520px;
-      margin: 0 auto 2rem;
+      font-size: 1.25rem;
+      opacity: 0.92;
+      max-width: 560px;
+      margin: 0 auto 1rem;
+    }
+    .hero .subtext {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      max-width: 460px;
+      margin: 0 auto 2.25rem;
     }
     .badge-row {
       display: flex;
       justify-content: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
     .badge {
       display: inline-block;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 999px;
       padding: 0.35rem 1rem;
       font-size: 0.8125rem;
       font-weight: 500;
     }
 
+    .problem {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 1rem;
+      text-align: center;
+    }
+    .problem h2 {
+      font-size: 1.5rem;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+    .problem p {
+      font-size: 1rem;
+      color: #475569;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
     .features {
       max-width: 900px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 2rem 1.5rem 3rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
     }
     .card {
       background: #fff;
@@ -73,6 +98,35 @@
     .card p {
       font-size: 0.875rem;
       color: #475569;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 2.5rem 1.5rem 3.5rem;
+    }
+    .cta h2 {
+      font-size: 1.5rem;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+    .cta p {
+      font-size: 0.95rem;
+      color: #475569;
+      margin-bottom: 1.5rem;
+    }
+    .cta .store-btn {
+      display: inline-block;
+      background: #0f172a;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .cta .store-btn:hover {
+      background: #1e293b;
     }
 
     .footer {
@@ -100,46 +154,58 @@
 <body>
   <section class="hero">
     <h1>EverShelf</h1>
-    <p class="tagline">Know exactly what you have, keep it fresh, and be ready for anything. Smart food storage tracking and audits so nothing expires unnoticed.</p>
+    <p class="tagline">Your fridge is full but there's "nothing to eat." Meanwhile, food expires in the back of the pantry.</p>
+    <p class="subtext">EverShelf connects what you have, what you'll cook, and what you need to buy — so nothing falls through the cracks.</p>
     <div class="badge-row">
-      <span class="badge">Storage Audits</span>
-      <span class="badge">Expiration Tracking</span>
-      <span class="badge">Emergency Preparedness</span>
-      <span class="badge">Zero Waste</span>
+      <span class="badge">Scan &amp; Track</span>
+      <span class="badge">Meal Planning</span>
+      <span class="badge">Smart Shopping Lists</span>
+      <span class="badge">Share with Friends</span>
     </div>
+  </section>
+
+  <section class="problem">
+    <h2>The average family throws away $1,500 of food per year.</h2>
+    <p>Forgotten leftovers. Expired cans buried in the pantry. Buying ingredients you already had. EverShelf makes all of that stop.</p>
   </section>
 
   <section class="features">
     <div class="card">
-      <div class="card-icon">&#x1F4E6;</div>
-      <h3>Complete Storage Inventory</h3>
-      <p>Track every item across your pantry, freezer, and emergency supply with expiration dates and quantities. Always know exactly what you have on hand.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">&#x1F50D;</div>
-      <h3>Storage Audits</h3>
-      <p>Run regular audits to catch expired items, low stock, and gaps in your supply. Stay on top of rotation so nothing spoils silently on the shelf.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">&#x26A1;</div>
-      <h3>Emergency Preparedness</h3>
-      <p>See at a glance how many days your household can sustain itself. Build toward your preparedness goals with clear progress tracking.</p>
+      <div class="card-icon">&#x1F4F7;</div>
+      <h3>Scan to Add Instantly</h3>
+      <p>Snap a photo of your groceries and AI fills in the details — name, expiration, location. Your whole kitchen inventory in minutes, not hours.</p>
     </div>
     <div class="card">
       <div class="card-icon">&#x1F514;</div>
-      <h3>Expiration Alerts</h3>
-      <p>Get notified before food goes bad so you can use it, rotate it, or replace it. Stop throwing away forgotten items buried in the back.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">&#x1F4F7;</div>
-      <h3>Quick Add with AI</h3>
-      <p>Snap a photo of your storage items and let AI identify and log items to your inventory instantly.</p>
+      <h3>Never Miss an Expiration</h3>
+      <p>Get notified before food goes bad. Use it, cook it, or share it — but stop finding expired food in the back of the fridge.</p>
     </div>
     <div class="card">
       <div class="card-icon">&#x1F372;</div>
-      <h3>Use What You Have</h3>
-      <p>Get recipe suggestions that prioritize items expiring soon, so you rotate through your storage naturally and reduce waste.</p>
+      <h3>Recipes from What You Have</h3>
+      <p>Get recipe suggestions based on ingredients already in your kitchen. Prioritizes items expiring soon so you use them up naturally.</p>
     </div>
+    <div class="card">
+      <div class="card-icon">&#x1F4C5;</div>
+      <h3>Meal Plans in Seconds</h3>
+      <p>Auto-generate a weekly meal plan that uses what you already have. One tap turns it into a shopping list — no duplicates, no guesswork.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#x1F91D;</div>
+      <h3>Share Instead of Waste</h3>
+      <p>Got more than you need? List items for friends to claim before they expire. Coordinate pickups with built-in chat.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#x1F50D;</div>
+      <h3>See the Big Picture</h3>
+      <p>Your food storage audit shows what's expiring, what's overstocked, and how much you've saved by using food instead of tossing it.</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Stop throwing away money.</h2>
+    <p>Download EverShelf and take control of your kitchen.</p>
+    <a class="store-btn" href="#">Download on the App Store</a>
   </section>
 
   <footer class="footer">
@@ -148,7 +214,7 @@
       <a href="/terms.html">Terms of Service</a>
       <a href="mailto:support@joshumi.com">Contact</a>
     </div>
-    <p>&copy; 2026 EverShelf. All rights reserved.</p>
+    <p>&copy; 2026 Joshumi Technologies LLC. All rights reserved.</p>
   </footer>
 </body>
 </html>
