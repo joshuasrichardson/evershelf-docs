@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical, source-backed course for learning family preparedness, food storage, home organization, nutrition, and customer care.">
+  <meta name="theme-color" content="#17352d">
+  <title>The Prepared Home Field Guide</title>
+  <style>
+    :root {
+      --forest: #17352d;
+      --forest-2: #234b3f;
+      --moss: #4d6b55;
+      --sage: #c9d2bd;
+      --sage-light: #e8ece2;
+      --paper: #f4f0e6;
+      --paper-2: #fffdf8;
+      --ink: #202922;
+      --muted: #687169;
+      --rust: #b75632;
+      --gold: #d6ab54;
+      --line: #d8d5c9;
+      --white: #fff;
+      --shadow: 0 24px 70px rgba(24, 44, 36, .13);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 4%, rgba(214, 171, 84, .13), transparent 24rem),
+        linear-gradient(90deg, rgba(23, 53, 45, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 28px 28px, auto;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    .skip-link {
+      position: fixed; left: 16px; top: 12px; z-index: 1000;
+      padding: 10px 14px; color: white; background: var(--forest);
+      border-radius: 9px; transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .masthead {
+      position: relative; overflow: hidden;
+      padding: 32px clamp(20px, 5vw, 76px) 68px;
+      color: var(--paper-2); background: var(--forest);
+    }
+    .masthead::before,
+    .masthead::after {
+      position: absolute; content: ""; border: 1px solid rgba(255,255,255,.09);
+      border-radius: 50%; pointer-events: none;
+    }
+    .masthead::before { width: 430px; height: 430px; right: -120px; top: -250px; }
+    .masthead::after { width: 280px; height: 280px; right: 90px; top: -150px; }
+    .topbar {
+      position: relative; z-index: 1; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; max-width: 1400px; margin: 0 auto 74px;
+    }
+    .brand { display: flex; align-items: center; gap: 13px; font-weight: 760; letter-spacing: .01em; }
+    .brand-mark {
+      display: grid; width: 38px; height: 38px; place-items: center;
+      border: 1px solid rgba(255,255,255,.26); border-radius: 50%; color: var(--gold);
+      font-family: Georgia, serif; font-size: 1.25rem;
+    }
+    .edition { color: rgba(255,255,255,.68); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+    .hero { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr); gap: 72px; align-items: end; }
+    .kicker { margin: 0 0 17px; color: var(--gold); font-size: .77rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+    h1, h2, h3 { margin-top: 0; line-height: 1.08; }
+    h1 { max-width: 880px; margin-bottom: 24px; font: 500 clamp(3rem, 6.3vw, 6.6rem)/.94 Georgia, "Times New Roman", serif; letter-spacing: -.055em; }
+    .hero-copy { max-width: 690px; margin: 0; color: rgba(255,255,255,.74); font-size: clamp(1rem, 1.5vw, 1.22rem); }
+    .audio-hero-link {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 12px 17px;
+      color: var(--paper-2); border: 1px solid rgba(255,255,255,.2); border-radius: 99px;
+      background: rgba(255,255,255,.07); font-size: .86rem; font-weight: 760; text-decoration: none;
+      transition: background .18s ease, transform .18s ease;
+    }
+    .audio-hero-link:hover { background: rgba(255,255,255,.12); transform: translateY(-1px); }
+    .audio-hero-link span { color: var(--gold); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-note { padding: 26px; border: 1px solid rgba(255,255,255,.13); border-radius: 18px; background: rgba(255,255,255,.055); backdrop-filter: blur(8px); }
+    .hero-note strong { display: block; margin-bottom: 8px; color: var(--gold); font: 500 1.5rem Georgia, serif; }
+    .hero-note p { margin: 0; color: rgba(255,255,255,.7); font-size: .93rem; }
+
+    .course-shell { display: grid; grid-template-columns: 310px minmax(0, 1fr); min-height: 75vh; }
+    .rail {
+      position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
+      padding: 34px 26px 44px; border-right: 1px solid var(--line); background: rgba(247,244,236,.94); backdrop-filter: blur(12px);
+    }
+    .progress-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 10px; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .progress-track { height: 7px; overflow: hidden; border-radius: 99px; background: #deded4; }
+    .progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--rust), var(--gold)); transition: width .35s ease; }
+    .rail-note { margin: 11px 0 25px; color: var(--muted); font-size: .8rem; }
+    .tier-nav { display: grid; gap: 6px; }
+    .tier-button {
+      width: 100%; padding: 13px 12px; color: var(--muted); background: transparent;
+      border: 0; border-radius: 12px; cursor: pointer; text-align: left; transition: .2s ease;
+    }
+    .tier-button:hover { color: var(--forest); background: rgba(77,107,85,.08); }
+    .tier-button[aria-current="step"] { color: var(--forest); background: var(--sage-light); }
+    .tier-button small { display: block; margin-bottom: 3px; font-size: .66rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .tier-button span { font-weight: 720; }
+    .rail-footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .reset-button { padding: 0; color: var(--muted); background: none; border: 0; cursor: pointer; font-size: .79rem; text-decoration: underline; text-underline-offset: 3px; }
+
+    .course-main { width: min(100%, 1120px); padding: clamp(46px, 7vw, 96px) clamp(22px, 7vw, 92px) 110px; }
+    .tier-panel { display: none; animation: rise .36s ease both; }
+    .tier-panel.active { display: block; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+    .tier-header { display: grid; grid-template-columns: 92px 1fr; gap: 25px; align-items: start; margin-bottom: 42px; }
+    .tier-number { color: var(--rust); font: 500 4.8rem/.8 Georgia, serif; letter-spacing: -.06em; }
+    .tier-overline { margin: 0 0 7px; color: var(--rust); font-size: .71rem; font-weight: 850; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { margin-bottom: 13px; color: var(--forest); font: 500 clamp(2.25rem, 4.5vw, 4.2rem)/1 Georgia, serif; letter-spacing: -.04em; }
+    .tier-intro { max-width: 720px; margin: 0; color: var(--muted); font-size: 1.04rem; }
+
+    .audio-card {
+      display: grid; grid-template-columns: minmax(0, .85fr) minmax(280px, 1.15fr); gap: 26px 34px;
+      align-items: center; margin: -10px 0 34px; padding: 25px 27px; color: white;
+      border-radius: 19px; background: linear-gradient(135deg, var(--forest), var(--forest-2));
+      box-shadow: 0 16px 40px rgba(23,53,45,.14);
+    }
+    .audio-card-copy h3 { margin: 0 0 7px; color: white; font: 500 1.45rem Georgia, serif; letter-spacing: -.025em; text-transform: none; }
+    .audio-card-copy p:last-child { margin: 0; color: rgba(255,255,255,.66); font-size: .8rem; }
+    .audio-eyebrow { margin: 0 0 5px !important; color: var(--gold) !important; font-size: .65rem !important; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    .audio-controls { min-width: 0; }
+    .audio-controls audio { display: block; width: 100%; height: 42px; accent-color: var(--gold); }
+    .audio-links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 11px; }
+    .audio-links a { color: rgba(255,255,255,.75); font-size: .71rem; font-weight: 720; text-underline-offset: 3px; }
+    .audio-links a:hover { color: white; }
+
+    .lesson-stack { display: grid; gap: 18px; }
+    .lesson {
+      overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius);
+      background: rgba(255,253,248,.86); box-shadow: 0 8px 30px rgba(28,47,39,.045);
+    }
+    .lesson > summary {
+      display: grid; grid-template-columns: 42px minmax(0,1fr) auto; gap: 17px; align-items: center;
+      padding: 23px 24px; cursor: pointer; list-style: none;
+    }
+    .lesson > summary::-webkit-details-marker { display: none; }
+    .lesson-index {
+      display: grid; width: 42px; height: 42px; place-items: center; color: var(--forest);
+      border: 1px solid var(--sage); border-radius: 50%; background: var(--sage-light);
+      font: 600 .92rem Georgia, serif;
+    }
+    .lesson-title { margin: 0; color: var(--forest); font-size: 1.07rem; letter-spacing: -.01em; }
+    .lesson-meta { display: block; margin-top: 3px; color: var(--muted); font-size: .78rem; }
+    .lesson-chevron { color: var(--moss); font-size: 1.25rem; transition: transform .2s ease; }
+    .lesson[open] .lesson-chevron { transform: rotate(45deg); }
+    .lesson-body { padding: 0 24px 27px 83px; }
+    .lesson-body > p:first-child { margin-top: 0; }
+    .lesson-body p { color: #4e5b52; }
+    .lesson-body h3 { margin: 26px 0 12px; color: var(--forest); font-size: .83rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+    .callout { margin: 22px 0; padding: 19px 21px; border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; background: #f2eee2; }
+    .callout strong { color: var(--forest); }
+    .callout p:last-child, .callout:last-child { margin-bottom: 0; }
+    .callout.caution { border-color: var(--rust); }
+    .prompt { color: var(--forest); font: italic 1.1rem Georgia, serif; }
+
+    .topic-grid, .resource-grid, .brand-grid, .scenario-grid { display: grid; gap: 12px; }
+    .topic-grid { grid-template-columns: repeat(3, minmax(0,1fr)); margin: 18px 0; }
+    .topic { padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-2); }
+    .topic strong { display: block; margin-bottom: 3px; color: var(--forest); font-size: .87rem; }
+    .topic span { color: var(--muted); font-size: .78rem; }
+    .resource-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .resource-link {
+      position: relative; display: block; min-height: 94px; padding: 17px 42px 17px 17px;
+      border: 1px solid var(--line); border-radius: 13px; background: var(--paper-2);
+      text-decoration: none; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .resource-link:hover { transform: translateY(-2px); border-color: var(--sage); box-shadow: 0 10px 22px rgba(30,54,44,.08); }
+    .resource-link::after { position: absolute; right: 17px; top: 16px; color: var(--rust); content: "↗"; font-weight: 800; }
+    .resource-link strong { display: block; margin-bottom: 5px; color: var(--forest); font-size: .87rem; }
+    .resource-link span { display: block; color: var(--muted); font-size: .76rem; line-height: 1.42; }
+    .source-type { display: inline-flex !important; width: max-content; margin-top: 9px; color: var(--moss) !important; font-size: .63rem !important; font-weight: 820; letter-spacing: .09em; text-transform: uppercase; }
+    .brand-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .brand-card { padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-2); }
+    .brand-card a { color: var(--forest); font-weight: 800; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+    .brand-card p { margin: 8px 0 0; font-size: .77rem; }
+
+    .checklist { display: grid; gap: 9px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .check-item label { display: flex; gap: 11px; align-items: flex-start; color: #425047; cursor: pointer; font-size: .9rem; }
+    .check-item input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--rust); flex: 0 0 auto; }
+    .check-item input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: #aaa; }
+    .lesson-complete { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 26px; padding-top: 19px; border-top: 1px solid var(--line); }
+    .lesson-complete label { display: flex; gap: 10px; align-items: center; color: var(--forest); font-weight: 760; cursor: pointer; }
+    .lesson-complete input { width: 20px; height: 20px; accent-color: var(--rust); }
+    .lesson-status { color: var(--muted); font-size: .75rem; }
+
+    .quote-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+    .quote-card { padding: 20px; border-radius: 15px; }
+    .quote-card.bad { color: #733c2c; background: #f6e6de; }
+    .quote-card.good { color: #23493c; background: #e4eee6; }
+    .quote-card small { display: block; margin-bottom: 8px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+    .quote-card blockquote { margin: 0; font: 500 1.05rem/1.5 Georgia, serif; }
+    .scenario-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .scenario { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-2); }
+    .scenario strong { display: block; color: var(--forest); }
+    .scenario p { margin: 7px 0 0; font-size: .8rem; }
+
+    .tier-actions { display: flex; justify-content: space-between; gap: 15px; margin-top: 38px; }
+    .nav-button {
+      min-width: 132px; padding: 13px 18px; color: var(--forest); background: transparent;
+      border: 1px solid var(--sage); border-radius: 12px; cursor: pointer; font-weight: 750;
+    }
+    .nav-button.primary { color: white; background: var(--forest); border-color: var(--forest); }
+    .nav-button:disabled { opacity: .35; cursor: not-allowed; }
+    .finish-card { display: none; margin-top: 28px; padding: 30px; color: white; border-radius: var(--radius); background: var(--forest); }
+    .finish-card.visible { display: block; }
+    .finish-card h3 { margin-bottom: 8px; font: 500 2rem Georgia, serif; }
+    .finish-card p { margin: 0; color: rgba(255,255,255,.72); }
+
+    .site-footer { padding: 28px 24px 44px; color: var(--muted); background: var(--forest); border-top: 1px solid rgba(255,255,255,.08); text-align: center; font-size: .76rem; }
+    .site-footer p { max-width: 760px; margin: 0 auto; color: rgba(255,255,255,.58); }
+
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; gap: 34px; }
+      .hero-note { max-width: 520px; }
+      .course-shell { grid-template-columns: 1fr; }
+      .rail { position: sticky; z-index: 20; height: auto; padding: 15px 20px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .progress-label, .progress-track { max-width: 540px; }
+      .rail-note, .rail-footer { display: none; }
+      .tier-nav { display: flex; overflow-x: auto; margin: 13px -4px 0; padding: 0 4px 3px; scrollbar-width: thin; }
+      .tier-button { flex: 0 0 auto; width: auto; min-width: 140px; }
+      .course-main { margin: 0 auto; }
+    }
+    @media (max-width: 700px) {
+      .masthead { padding-bottom: 50px; }
+      .topbar { margin-bottom: 50px; }
+      .edition { display: none; }
+      .tier-header { grid-template-columns: 1fr; gap: 8px; }
+      .audio-card { grid-template-columns: 1fr; gap: 18px; padding: 21px; }
+      .tier-number { font-size: 3.5rem; }
+      .topic-grid, .resource-grid, .brand-grid, .scenario-grid, .quote-compare { grid-template-columns: 1fr; }
+      .lesson > summary { grid-template-columns: 38px minmax(0,1fr) auto; gap: 12px; padding: 19px 17px; }
+      .lesson-index { width: 38px; height: 38px; }
+      .lesson-body { padding: 0 17px 22px; }
+      .lesson-complete { align-items: flex-start; flex-direction: column; }
+      .tier-actions { position: sticky; bottom: 12px; z-index: 10; padding: 9px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,253,248,.92); backdrop-filter: blur(10px); }
+      .nav-button { min-width: 0; flex: 1; }
+    }
+    @media print {
+      body { background: white; }
+      .masthead { padding: 30px; color: black; background: white; border-bottom: 2px solid black; }
+      .hero, .course-shell { display: block; }
+      .topbar, .hero-note, .rail, .tier-actions, .site-footer { display: none; }
+      h1 { font-size: 42px; }
+      .hero-copy { color: #444; }
+      .course-main { width: auto; padding: 30px; }
+      .tier-panel { display: block !important; break-before: page; }
+      .lesson { break-inside: avoid; box-shadow: none; }
+      .lesson > summary { list-style: none; }
+      .lesson-body { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#course">Skip to course</a>
+  <header class="masthead">
+    <div class="topbar">
+      <div class="brand"><span class="brand-mark">E</span><span>EverShelf Learning</span></div>
+      <div class="edition">Utah edition · practical, calm, source-backed</div>
+    </div>
+    <div class="hero">
+      <div>
+        <p class="kicker">Family Preparedness Course</p>
+        <h1>The Prepared Home Field Guide</h1>
+        <p class="hero-copy">A seven-tier path from trustworthy emergency guidance to food storage, home safety, organization, customer care, and the habits that make preparedness last.</p>
+        <a class="audio-hero-link" href="#audio-course" aria-label="Jump to the seven-part audio course, about 35 minutes"><span aria-hidden="true">▶</span> Listen to the 7-part audio course <span>35 min</span></a>
+      </div>
+      <aside class="hero-note" aria-label="How to use this course">
+        <strong>Start with the boring basics.</strong>
+        <p>Master Tier 1 before recommending products. Read the source, complete the field action, and only then mark the lesson done.</p>
+      </aside>
+    </div>
+  </header>
+
+  <div class="course-shell" id="course">
+    <aside class="rail" aria-label="Course navigation">
+      <div class="progress-label"><span>Course progress</span><span id="progress-text">0 of 19</span></div>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="19" aria-valuenow="0" aria-label="Course completion"><div class="progress-fill" id="progress-fill"></div></div>
+      <p class="rail-note">Progress is saved in this browser.</p>
+      <nav class="tier-nav">
+        <button class="tier-button" data-tier="1" aria-current="step"><small>Tier 1 · 5 lessons</small><span>Master These First</span></button>
+        <button class="tier-button" data-tier="2"><small>Tier 2 · 2 lessons</small><span>Organization</span></button>
+        <button class="tier-button" data-tier="3"><small>Tier 3 · 6 lessons</small><span>Food Storage</span></button>
+        <button class="tier-button" data-tier="4"><small>Tier 4 · 1 lesson</small><span>Nutrition</span></button>
+        <button class="tier-button" data-tier="5"><small>Tier 5 · 1 lesson</small><span>Home Preparedness</span></button>
+        <button class="tier-button" data-tier="6"><small>Tier 6 · 1 lesson</small><span>Customer Service</span></button>
+        <button class="tier-button" data-tier="7"><small>Tier 7 · 3 lessons</small><span>Psychology</span></button>
+      </nav>
+      <div class="rail-footer"><button class="reset-button" id="reset-progress">Reset all progress</button></div>
+    </aside>
+
+    <main class="course-main">
+      <section class="tier-panel active" data-panel="1">
+        <header class="tier-header">
+          <div class="tier-number">01</div>
+          <div><p class="tier-overline">Non-negotiable</p><h2>Master these first</h2><p class="tier-intro">These are your reference authorities. Build recommendations from them, especially when safety, food quality, or a family’s specific needs are involved.</p></div>
+        </header>
+        <section class="audio-card" id="audio-course" aria-labelledby="audio-title-1">
+          <div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 1 · 5:16</p><h3 id="audio-title-1">Master These First</h3><p>FEMA, the Red Cross, Utah hazards, FoodKeeper, and gradual home storage.</p></div>
+          <div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/01-master-these-first.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/01-master-these-first.mp3" download>Download MP3 · 2.4 MB</a><a href="audio/family-preparedness/01-master-these-first.txt" target="_blank">Read transcript</a></div></div>
+        </section>
+        <div class="lesson-stack">
+          <details class="lesson" open>
+            <summary><span class="lesson-index">1.1</span><span><strong class="lesson-title">FEMA Ready</strong><span class="lesson-meta">Planning · communication · kits · people & pets</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Use Ready.gov as the baseline for what every household should know and have. Its guidance is practical, risk-aware, and organized around making a plan, building a kit, and understanding local hazards.</p>
+              <div class="callout"><strong>Core answer:</strong> When someone asks, “What should every family have?” begin with a household plan, a communication plan, an evacuation strategy, and a maintained supply kit tailored to every person and pet.</div>
+              <div class="topic-grid">
+                <div class="topic"><strong>Plan</strong><span>Meeting places, responsibilities, alerts</span></div>
+                <div class="topic"><strong>Communicate</strong><span>Out-of-area contact and paper copies</span></div>
+                <div class="topic"><strong>Supply</strong><span>Water, food, medications, light, radio</span></div>
+                <div class="topic"><strong>Evacuate</strong><span>Destinations, routes, transport</span></div>
+                <div class="topic"><strong>Include</strong><span>Children, disabilities, older adults</span></div>
+                <div class="topic"><strong>Protect pets</strong><span>Food, records, carrier, destinations</span></div>
+              </div>
+              <h3>Read the source</h3>
+              <div class="resource-grid">
+                <a class="resource-link" href="https://www.ready.gov/" target="_blank" rel="noopener"><strong>Ready.gov preparedness hub</strong><span>The main FEMA starting point for household preparedness.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/plan" target="_blank" rel="noopener"><strong>Make a plan</strong><span>Household needs, communication, shelter, and evacuation.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/kit" target="_blank" rel="noopener"><strong>Build a kit</strong><span>Recommended basic emergency supplies and maintenance.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/evacuation" target="_blank" rel="noopener"><strong>Evacuation guidance</strong><span>Routes, destinations, transport, and go-bags.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/people-disabilities" target="_blank" rel="noopener"><strong>People with disabilities</strong><span>Plans, support networks, equipment, and communication.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/pets" target="_blank" rel="noopener"><strong>Pets and animals</strong><span>Pet-friendly evacuation and animal supply planning.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/kids" target="_blank" rel="noopener"><strong>Ready Kids</strong><span>Age-appropriate preparedness materials for children.</span><span class="source-type">Official · FEMA</span></a>
+              </div>
+              <h3>Field action</h3>
+              <ul class="checklist">
+                <li class="check-item"><label><input type="checkbox" data-action="1-1-a"><span>Draft a sample family communication plan with two meeting places and one out-of-area contact.</span></label></li>
+                <li class="check-item"><label><input type="checkbox" data-action="1-1-b"><span>Build a kit list that includes one personalized line for each household member and pet.</span></label></li>
+              </ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="1-1"><span>Mark FEMA Ready complete</span></label><span class="lesson-status">Read + apply</span></div>
+            </div>
+          </details>
+
+          <details class="lesson">
+            <summary><span class="lesson-index">1.2</span><span><strong class="lesson-title">American Red Cross</strong><span class="lesson-meta">Kits · water · first aid · power · severe weather</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>The Red Cross is the practical companion to FEMA. Focus on household kit composition, first aid readiness, and clear before/during/after guidance for common emergencies.</p>
+              <div class="callout"><strong>Useful benchmark:</strong> The Red Cross kit list calls for one gallon of water per person per day—three days for evacuation and two weeks for home—plus nonperishable food on the same timetable.</div>
+              <h3>Read the source</h3>
+              <div class="resource-grid">
+                <a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html" target="_blank" rel="noopener"><strong>Survival kit supplies</strong><span>Water, food, light, radio, first aid, medication, and documents.</span><span class="source-type">Official · Red Cross</span></a>
+                <a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/anatomy-of-a-first-aid-kit.html" target="_blank" rel="noopener"><strong>Build a first aid kit</strong><span>A detailed family-of-four supply checklist.</span><span class="source-type">Official · Red Cross</span></a>
+                <a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/power-outage.html" target="_blank" rel="noopener"><strong>Power outage safety</strong><span>Backup power, refrigeration, medical needs, and carbon monoxide.</span><span class="source-type">Official · Red Cross</span></a>
+                <a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/winter-storm.html" target="_blank" rel="noopener"><strong>Winter storm safety</strong><span>Preparation, heating safety, travel, and recovery.</span><span class="source-type">Official · Red Cross</span></a>
+                <a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/wildfire.html" target="_blank" rel="noopener"><strong>Wildfire safety</strong><span>Defensible space, evacuation readiness, smoke, and return.</span><span class="source-type">Official · Red Cross</span></a>
+                <a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies.html" target="_blank" rel="noopener"><strong>Emergency resource library</strong><span>Guidance for 25 different emergency types.</span><span class="source-type">Official · Red Cross</span></a>
+              </div>
+              <h3>Field action</h3>
+              <ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="1-2-a"><span>Compare your standard audit checklist with the Red Cross survival kit list.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="1-2-b"><span>Locate a first aid/CPR course you could recommend locally.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="1-2"><span>Mark Red Cross complete</span></label><span class="lesson-status">Read + compare</span></div>
+            </div>
+          </details>
+
+          <details class="lesson">
+            <summary><span class="lesson-index">1.3</span><span><strong class="lesson-title">Be Ready Utah</strong><span class="lesson-meta">Earthquakes · winter · power · floods · smoke</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Local fluency builds trust. Be Ready Utah is the public preparedness program of the Utah Division of Emergency Management. Pair it with Utah earthquake and air-quality resources.</p>
+              <div class="callout caution"><strong>Utah lens:</strong> A strong local plan covers earthquake hazards and home securing, winter travel and heat, power-dependent needs, spring runoff and flooding, wildfire evacuation, and smoke exposure.</div>
+              <h3>Read the source</h3>
+              <div class="resource-grid">
+                <a class="resource-link" href="https://beready.utah.gov/" target="_blank" rel="noopener"><strong>Be Ready Utah</strong><span>Utah hazards, family planning, kits, downloads, and preparedness library.</span><span class="source-type">Official · Utah DEM</span></a>
+                <a class="resource-link" href="https://earthquakes.utah.gov/" target="_blank" rel="noopener"><strong>Earthquakes in Utah</strong><span>Drop, Cover, Hold On; home hazards; utilities; local seismic risk.</span><span class="source-type">Official · State of Utah</span></a>
+                <a class="resource-link" href="https://www.ready.gov/winter-weather" target="_blank" rel="noopener"><strong>Winter weather</strong><span>A national checklist to supplement Utah local guidance.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/power-outages" target="_blank" rel="noopener"><strong>Power outages</strong><span>Food, power, medical devices, generators, and carbon monoxide.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://www.ready.gov/floods" target="_blank" rel="noopener"><strong>Floods</strong><span>Alerts, evacuation, property protection, and safe return.</span><span class="source-type">Official · FEMA</span></a>
+                <a class="resource-link" href="https://deq.utah.gov/air-quality/protect-yourself-from-wildfire-smoke" target="_blank" rel="noopener"><strong>Wildfire smoke protection</strong><span>Utah-specific indoor and outdoor exposure reduction.</span><span class="source-type">Official · Utah DEQ</span></a>
+              </div>
+              <h3>Field action</h3>
+              <ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="1-3-a"><span>Practice Drop, Cover, and Hold On and identify two unsecured tall or heavy objects.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="1-3-b"><span>Create a one-page Utah hazard reference for customer visits.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="1-3"><span>Mark Be Ready Utah complete</span></label><span class="lesson-status">Read + localize</span></div>
+            </div>
+          </details>
+
+          <details class="lesson">
+            <summary><span class="lesson-index">1.4</span><span><strong class="lesson-title">USDA FoodKeeper</strong><span class="lesson-meta">Dates · temperatures · cans · refrigeration · freezing</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>FoodKeeper is the answer to “Is this still good?” It was developed by USDA’s Food Safety and Inspection Service with Cornell University and the Food Marketing Institute. Look up the specific food—never improvise a safety date.</p>
+              <div class="callout caution"><strong>Never guess.</strong> Package dates, storage conditions, food safety, and food quality are different questions. When there is uncertainty, use FoodKeeper or refer the customer to an appropriate authority.</div>
+              <h3>Read the source</h3>
+              <div class="resource-grid">
+                <a class="resource-link" href="https://www.foodsafety.gov/keep-food-safe/foodkeeper-app" target="_blank" rel="noopener"><strong>FoodKeeper</strong><span>Storage guidance for more than 650 foods and beverages.</span><span class="source-type">Official · USDA</span></a>
+                <a class="resource-link" href="https://www.foodsafety.gov/food-safety-charts/cold-food-storage-charts" target="_blank" rel="noopener"><strong>Cold food storage chart</strong><span>Refrigerator and freezer time limits and temperatures.</span><span class="source-type">Official · USDA</span></a>
+                <a class="resource-link" href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-product-dating" target="_blank" rel="noopener"><strong>Food product dating</strong><span>What “Best If Used By,” “Sell-By,” and other date labels mean.</span><span class="source-type">Official · USDA FSIS</span></a>
+                <a class="resource-link" href="https://www.foodsafety.gov/food-safety-charts/food-safety-during-power-outage" target="_blank" rel="noopener"><strong>Food safety in a power outage</strong><span>What can remain safe and when refrigerated food must be discarded.</span><span class="source-type">Official · USDA</span></a>
+              </div>
+              <h3>Field action</h3>
+              <ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="1-4-a"><span>Look up five common pantry or refrigerator items in FoodKeeper.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="1-4-b"><span>Practice explaining the difference between a quality date and a safety decision.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="1-4"><span>Mark FoodKeeper complete</span></label><span class="lesson-status">Read + practice</span></div>
+            </div>
+          </details>
+
+          <details class="lesson">
+            <summary><span class="lesson-index">1.5</span><span><strong class="lesson-title">Church food storage resources</strong><span class="lesson-meta">Quantities · rotation · gradual building · avoiding waste</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>In Utah, many customers will recognize the Church of Jesus Christ of Latter-day Saints’ home storage approach. Understand its philosophy without assuming a customer’s membership or beliefs.</p>
+              <div class="callout"><strong>The philosophy:</strong> begin with foods already in the normal diet, add safe water, continually use and replace a short-term supply, and build longer-term basics gradually as money and space allow. Do not go into debt or buy a system the household will not use.</div>
+              <h3>Read the source</h3>
+              <div class="resource-grid">
+                <a class="resource-link" href="https://www.churchofjesuschrist.org/topics/food-storage?lang=eng" target="_blank" rel="noopener"><strong>Food storage overview</strong><span>Home storage principles and source library.</span><span class="source-type">Faith-based · Official</span></a>
+                <a class="resource-link" href="https://www.churchofjesuschrist.org/topics/food-storage/frequently-asked-questions?lang=eng" target="_blank" rel="noopener"><strong>Food storage FAQ</strong><span>Gradual building, rotation, packaging, and long-term staples.</span><span class="source-type">Faith-based · Official</span></a>
+                <a class="resource-link" href="https://www.churchofjesuschrist.org/topics/food-storage/longer-term-food-supply?lang=eng" target="_blank" rel="noopener"><strong>Longer-term food supply</strong><span>Suitable dry foods, storage conditions, and estimated shelf life.</span><span class="source-type">Faith-based · Official</span></a>
+                <a class="resource-link" href="https://www.churchofjesuschrist.org/topics/food-storage/drinking-water-guidelines?lang=eng" target="_blank" rel="noopener"><strong>Drinking water guidelines</strong><span>Containers, treatment, storage, and rotation.</span><span class="source-type">Faith-based · Official</span></a>
+              </div>
+              <h3>Field action</h3>
+              <ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="1-5-a"><span>Write a neutral, nonreligious explanation of “store what you eat; eat what you store.”</span></label></li><li class="check-item"><label><input type="checkbox" data-action="1-5-b"><span>Build a sample gradual-buying plan that avoids debt and waste.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="1-5"><span>Mark Church resources complete</span></label><span class="lesson-status">Read + translate</span></div>
+            </div>
+          </details>
+        </div>
+        <div class="tier-actions"><button class="nav-button" disabled>Previous tier</button><button class="nav-button primary" data-next="2">Next: Organization</button></div>
+      </section>
+
+      <section class="tier-panel" data-panel="2">
+        <header class="tier-header"><div class="tier-number">02</div><div><p class="tier-overline">Systems over aesthetics</p><h2>Organization</h2><p class="tier-intro">Preparedness succeeds when people can see, reach, understand, and maintain what they own. Learn to design for the household—not for a photograph.</p></div></header>
+        <section class="audio-card" aria-labelledby="audio-title-2"><div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 2 · 4:30</p><h3 id="audio-title-2">Organization</h3><p>Zones, shelf logic, labels, containers, rotation, and maintenance that fits the household.</p></div><div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/02-organization.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/02-organization.mp3" download>Download MP3 · 2.1 MB</a><a href="audio/family-preparedness/02-organization.txt" target="_blank">Read transcript</a></div></div></section>
+        <div class="lesson-stack">
+          <details class="lesson" open>
+            <summary><span class="lesson-index">2.1</span><span><strong class="lesson-title">Professional organizers</strong><span class="lesson-meta">Zones · labels · access · organizing styles</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Study how professional organizers group categories, match a system to a person’s habits, use labels, and make frequently used items easy to retrieve and return.</p>
+              <div class="topic-grid"><div class="topic"><strong>Pantry zones</strong><span>Group by task or food category</span></div><div class="topic"><strong>Labels</strong><span>Use broad, durable language</span></div><div class="topic"><strong>Shelf logic</strong><span>Frequency, weight, safety, reach</span></div><div class="topic"><strong>Containers</strong><span>Visibility, fit, seal, lift weight</span></div><div class="topic"><strong>Rotation</strong><span>Earliest-use items visible first</span></div><div class="topic"><strong>Maintenance</strong><span>Make the reset easy</span></div></div>
+              <h3>Study these approaches</h3>
+              <div class="resource-grid">
+                <a class="resource-link" href="https://thehomeedit.com/" target="_blank" rel="noopener"><strong>The Home Edit</strong><span>Study editing, categorizing, containing, visibility, and presentation.</span><span class="source-type">Professional organizer</span></a>
+                <a class="resource-link" href="https://clutterbug.me/" target="_blank" rel="noopener"><strong>Clutterbug</strong><span>Study how organizing systems change with visual and detail preferences.</span><span class="source-type">Professional organizer</span></a>
+                <a class="resource-link" href="https://www.lelaburris.com/" target="_blank" rel="noopener"><strong>Organized-ish</strong><span>Study functional, livable systems over trend-driven perfection.</span><span class="source-type">Professional organizer</span></a>
+                <a class="resource-link" href="https://clutterbug.me/downloads/Clutterbug_Ebook.pdf" target="_blank" rel="noopener"><strong>Clutterbug organizing styles</strong><span>A free primer on matching systems to different organizing preferences.</span><span class="source-type">Free guide</span></a>
+              </div>
+              <h3>Field action</h3>
+              <ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="2-1-a"><span>Organize one shelf by use frequency, weight, and category—not appearance alone.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="2-1-b"><span>Test whether another household member can find and return five items without coaching.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="2-1"><span>Mark organizer study complete</span></label><span class="lesson-status">Study + test</span></div>
+            </div>
+          </details>
+          <details class="lesson">
+            <summary><span class="lesson-index">2.2</span><span><strong class="lesson-title">Retail field study</strong><span class="lesson-meta">Shelving · bins · labels · stackable storage</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Walk Costco and The Container Store like a systems designer. Do not begin by buying. Notice dimensions, load ratings, material, lid geometry, stackability, cleanability, visibility, and how a person would lift a full container.</p>
+              <h3>Browse before the walk-through</h3>
+              <div class="resource-grid"><a class="resource-link" href="https://www.costco.com/storage-organization.html" target="_blank" rel="noopener"><strong>Costco storage & organization</strong><span>Bulk shelving, bins, racks, and garage-scale systems.</span><span class="source-type">Commercial reference</span></a><a class="resource-link" href="https://www.containerstore.com/s/kitchen/pantry-organizers/12" target="_blank" rel="noopener"><strong>The Container Store pantry section</strong><span>Compare modular bins, risers, turntables, labels, and canisters.</span><span class="source-type">Commercial reference</span></a></div>
+              <div class="callout caution"><strong>Fit before purchase:</strong> measure shelf width, depth, height, door clearance, and the weight a customer can safely move. A beautiful bin that hides dates, holds too much weight, or wastes vertical space is not a solution.</div>
+              <h3>Field action</h3>
+              <ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="2-2-a"><span>Photograph or note three shelving systems and record dimensions and load limits.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="2-2-b"><span>Compare three container types for seal, visibility, stackability, and one-handed use.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="2-2"><span>Mark retail field study complete</span></label><span class="lesson-status">Observe + measure</span></div>
+            </div>
+          </details>
+        </div>
+        <div class="tier-actions"><button class="nav-button" data-prev="1">Previous</button><button class="nav-button primary" data-next="3">Next: Food Storage</button></div>
+      </section>
+
+      <section class="tier-panel" data-panel="3">
+        <header class="tier-header"><div class="tier-number">03</div><div><p class="tier-overline">Learn by category</p><h2>Food storage</h2><p class="tier-intro">Know what each category contributes, what degrades it, how to package it, and how the household will actually rotate and prepare it.</p></div></header>
+        <section class="audio-card" aria-labelledby="audio-title-3"><div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 3 · 6:21</p><h3 id="audio-title-3">Food Storage</h3><p>Water, grains, proteins, dairy, oils, freeze-dried foods, packaging, and rotation.</p></div><div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/03-food-storage.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/03-food-storage.mp3" download>Download MP3 · 2.9 MB</a><a href="audio/family-preparedness/03-food-storage.txt" target="_blank">Read transcript</a></div></div></section>
+        <div class="lesson-stack">
+          <details class="lesson" open>
+            <summary><span class="lesson-index">3.1</span><span><strong class="lesson-title">Water</strong><span class="lesson-meta">Amount · duration · rotation · containers</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Start with at least one gallon per person per day for three days; aim for two weeks when feasible. Store more for pregnancy, illness, pets, and hot weather. Commercially bottled water is the most reliable option; user-filled containers should be food-grade, clean, sealed, and replaced every six months.</p>
+              <h3>Read the source</h3>
+              <div class="resource-grid"><a class="resource-link" href="https://www.cdc.gov/water-emergency/about/how-to-create-and-store-an-emergency-water-supply.html" target="_blank" rel="noopener"><strong>Create an emergency water supply</strong><span>Quantities, containers, sanitation, storage, and rotation.</span><span class="source-type">Official · CDC</span></a><a class="resource-link" href="https://beready.utah.gov/family-preparedness/12-areas-of-preparedness/water/" target="_blank" rel="noopener"><strong>Water preparedness in Utah</strong><span>Local water storage and treatment guidance.</span><span class="source-type">Official · Utah DEM</span></a></div>
+              <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="3-1-a"><span>Calculate three-day and two-week water targets for households of 1, 4, and 6 people.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="3-1"><span>Mark water complete</span></label><span class="lesson-status">Calculate + inspect</span></div>
+            </div>
+          </details>
+          <details class="lesson">
+            <summary><span class="lesson-index">3.2</span><span><strong class="lesson-title">Grains</strong><span class="lesson-meta">Rice · wheat · oats · flour · Mylar · buckets</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Whole grain, milled flour, brown rice, and white rice do not share one shelf life. Heat, moisture, oxygen, insects, fat content, and packaging all matter. Mylar-style bags can provide a barrier, while rigid food-grade outer containers add physical and rodent protection.</p>
+              <h3>Read the source</h3><div class="resource-grid"><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/research/food-storage-in-home" target="_blank" rel="noopener"><strong>Food storage in the home</strong><span>Utah State University tables for flour, cereals, rice, pasta, and more.</span><span class="source-type">University extension</span></a><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/research/storing-wheat" target="_blank" rel="noopener"><strong>Storing wheat</strong><span>Varieties, moisture, packaging, pests, oxygen absorbers, and bucket use.</span><span class="source-type">University extension</span></a><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/food-storage-packaging" target="_blank" rel="noopener"><strong>Packaging foods</strong><span>Food-by-food guidance for Mylar-style bags, cans, jars, and buckets.</span><span class="source-type">University extension</span></a></div>
+              <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="3-2-a"><span>Create a comparison card for white rice, brown rice, wheat berries, oats, and flour.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="3-2"><span>Mark grains complete</span></label><span class="lesson-status">Compare + package</span></div>
+            </div>
+          </details>
+          <details class="lesson">
+            <summary><span class="lesson-index">3.3</span><span><strong class="lesson-title">Protein</strong><span class="lesson-meta">Beans · lentils · meat · peanut butter · eggs</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Build variety across dry beans and lentils, ready-to-eat canned proteins, nut or seed butters, dried eggs, and freeze-dried meat. Account for fuel, water, allergies, texture preferences, and the shorter shelf life after a large package is opened.</p>
+              <h3>Read the source</h3><div class="resource-grid"><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/food-storage" target="_blank" rel="noopener"><strong>USU emergency food storage library</strong><span>Guides for dry beans, canned goods, eggs, meats, and safe storage.</span><span class="source-type">University extension</span></a><a class="resource-link" href="https://extension.usu.edu/news_sections/home_family_and_food/portable-food-storage" target="_blank" rel="noopener"><strong>Portable emergency food storage</strong><span>Ready-to-eat meats, peanut butter, infant food, and low-prep choices.</span><span class="source-type">University extension</span></a><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/food-storage-packaging" target="_blank" rel="noopener"><strong>Dried beans and eggs packaging</strong><span>Moisture, oxygen, package size, and after-opening guidance.</span><span class="source-type">University extension</span></a></div>
+              <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="3-3-a"><span>Build a one-day protein plan that can be prepared without grid power.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="3-3"><span>Mark protein complete</span></label><span class="lesson-status">Balance + prepare</span></div>
+            </div>
+          </details>
+          <details class="lesson">
+            <summary><span class="lesson-index">3.4</span><span><strong class="lesson-title">Dairy</strong><span class="lesson-meta">Powdered milk · shelf life · opened packages · rotation</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Powdered milk is sensitive to moisture, light, oxygen, and storage temperature. Package size matters because opening changes the storage clock. A customer also needs a realistic plan for using it in drinks, baking, sauces, or meals.</p>
+              <h3>Read the source</h3><div class="resource-grid"><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/food-storage-packaging" target="_blank" rel="noopener"><strong>USU dried milk packaging</strong><span>Barrier requirements, oxygen exposure, light, and product quality.</span><span class="source-type">University extension</span></a><a class="resource-link" href="https://www.churchofjesuschrist.org/topics/food-storage/longer-term-food-supply?lang=eng" target="_blank" rel="noopener"><strong>Longer-term staple estimates</strong><span>Includes nonfat powdered milk under recommended conditions.</span><span class="source-type">Faith-based · Official</span></a></div>
+              <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="3-4-a"><span>Make one familiar recipe using powdered milk and document opened-package handling.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="3-4"><span>Mark dairy complete</span></label><span class="lesson-status">Store + use</span></div>
+            </div>
+          </details>
+          <details class="lesson">
+            <summary><span class="lesson-index">3.5</span><span><strong class="lesson-title">Oils and fats</strong><span class="lesson-meta">Oxidation · heat · light · package size · rotation</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Oils are one of the hardest categories because they oxidize and become rancid. Store them cool, dark, and sealed; buy sizes the household will finish after opening; rotate them through normal cooking. “Long-term pantry” does not mean every product is a long-life product.</p>
+              <div class="callout caution"><strong>Common failure:</strong> oversized clear plastic bottles stored warm for years. USU notes that plastics allow meaningful oxygen transfer over time, while metal cans resist it better.</div>
+              <h3>Read the source</h3><div class="resource-grid"><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/food-storage-packaging" target="_blank" rel="noopener"><strong>Fats and oils packaging</strong><span>Container barriers and why plastic is difficult for longer storage.</span><span class="source-type">University extension</span></a><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/research/food-storage-in-home" target="_blank" rel="noopener"><strong>Home storage conditions</strong><span>How temperature, packaging, and rotation affect stored food.</span><span class="source-type">University extension</span></a></div>
+              <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="3-5-a"><span>Audit oil package sizes, storage temperature, light exposure, and normal usage rate.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="3-5"><span>Mark oils complete</span></label><span class="lesson-status">Inspect + rotate</span></div>
+            </div>
+          </details>
+          <details class="lesson">
+            <summary><span class="lesson-index">3.6</span><span><strong class="lesson-title">Freeze-dried foods</strong><span class="lesson-meta">Labels · calories · water · brands · opened life</span></span><span class="lesson-chevron">+</span></summary>
+            <div class="lesson-body">
+              <p>Customers may already own these products. Learn to read their labels: distinguish servings from calories, record allergens and sodium, calculate preparation water, note lot and best-by dates, and follow the manufacturer’s after-opening instructions.</p>
+              <div class="brand-grid">
+                <div class="brand-card"><a href="https://mountainhouse.com/" target="_blank" rel="noopener">Mountain House ↗</a><p>Review pouch, can, kit, shelf-life, and preparation information.</p></div>
+                <div class="brand-card"><a href="https://augasonfarms.com/" target="_blank" rel="noopener">Augason Farms ↗</a><p>Review staples, meals, dairy, produce, and product-specific life.</p></div>
+                <div class="brand-card"><a href="https://readywise.com/" target="_blank" rel="noopener">ReadyWise ↗</a><p>Review duration claims, calories, servings, and water needs.</p></div>
+                <div class="brand-card"><a href="https://www.thrivelife.com/media/wysiwyg/old_materials/Flyer-Understanding-Shelf-Life.pdf" target="_blank" rel="noopener">Thrive Life archive ↗</a><p>Former-brand shelf-life reference for products customers may own.</p></div>
+              </div>
+              <div class="callout"><strong>Product literacy, not endorsement:</strong> Manufacturer claims are product-specific. Record what is printed on the customer’s actual package. Thrive Life closed in 2025, so this course links an archived official shelf-life handout for identifying existing stock.</div>
+              <h3>Independent preparation reference</h3><div class="resource-grid"><a class="resource-link" href="https://extension.usu.edu/preserve-the-harvest/research/freeze-drying-essential-and-nice-to-have-tools-and-supplies" target="_blank" rel="noopener"><strong>Freeze-drying tools and packaging</strong><span>Mylar-style bags, oxygen absorbers, seals, and portion sizes.</span><span class="source-type">University extension</span></a></div>
+              <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="3-6-a"><span>Compare four labels by total calories, protein, sodium, water required, allergens, and opened shelf life.</span></label></li></ul>
+              <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="3-6"><span>Mark freeze-dried foods complete</span></label><span class="lesson-status">Read the label</span></div>
+            </div>
+          </details>
+        </div>
+        <div class="tier-actions"><button class="nav-button" data-prev="2">Previous</button><button class="nav-button primary" data-next="4">Next: Nutrition</button></div>
+      </section>
+
+      <section class="tier-panel" data-panel="4">
+        <header class="tier-header"><div class="tier-number">04</div><div><p class="tier-overline">Can the family live on it?</p><h2>Nutrition</h2><p class="tier-intro">You do not need a nutrition degree. You do need to recognize when a pantry has calories but lacks balance—and when a customer needs a qualified clinician.</p></div></header>
+        <section class="audio-card" aria-labelledby="audio-title-4"><div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 4 · 4:38</p><h3 id="audio-title-4">Nutrition</h3><p>Calories, macronutrients, life stages, special diets, preparation limits, and referrals.</p></div><div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/04-nutrition.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/04-nutrition.mp3" download>Download MP3 · 2.1 MB</a><a href="audio/family-preparedness/04-nutrition.txt" target="_blank">Read transcript</a></div></div></section>
+        <div class="lesson-stack"><details class="lesson" open><summary><span class="lesson-index">4.1</span><span><strong class="lesson-title">Nutrition adequacy</strong><span class="lesson-meta">Calories · protein · fat · carbs · life stages · special diets</span></span><span class="lesson-chevron">+</span></summary><div class="lesson-body">
+          <p>Learn to inventory energy and macronutrients, then test whether stored meals work for the household’s life stages, medical needs, allergies, beliefs, and preparation constraints. Needs change for children, pregnancy and breastfeeding, older adults, and many therapeutic diets.</p>
+          <div class="scenario-grid"><div class="scenario"><strong>Calories</strong><p>Does the total supply provide enough usable energy, not just “servings”?</p></div><div class="scenario"><strong>Protein</strong><p>Are there practical sources across meals and dietary restrictions?</p></div><div class="scenario"><strong>Fat</strong><p>Is there a rotating source of energy-dense fat that will stay usable?</p></div><div class="scenario"><strong>Carbohydrates</strong><p>Are staples balanced with protein, fat, produce, and fiber?</p></div><div class="scenario"><strong>Life stages</strong><p>Can children, pregnant people, and older adults safely eat the plan?</p></div><div class="scenario"><strong>Special diets</strong><p>Are allergies, intolerances, chronic conditions, and beliefs honored?</p></div></div>
+          <h3>Read the source</h3><div class="resource-grid"><a class="resource-link" href="https://www.dietaryguidelines.gov/" target="_blank" rel="noopener"><strong>Dietary Guidelines for Americans</strong><span>Current federal food and nutrition guidance.</span><span class="source-type">Official · USDA/HHS</span></a><a class="resource-link" href="https://www.myplate.gov/web/web/life-stages" target="_blank" rel="noopener"><strong>MyPlate life stages</strong><span>Pregnancy, infants, children, adults, older adults, and families.</span><span class="source-type">Official · USDA</span></a><a class="resource-link" href="https://www.nal.usda.gov/human-nutrition-and-food-safety/dri-calculator" target="_blank" rel="noopener"><strong>DRI Calculator</strong><span>Reference intake estimates based on age, sex, height, weight, and activity.</span><span class="source-type">Official · USDA</span></a><a class="resource-link" href="https://www.fns.usda.gov/wic/food-packages" target="_blank" rel="noopener"><strong>Pregnancy, infants, and young children</strong><span>Science-based supplemental food patterns by life stage.</span><span class="source-type">Official · USDA</span></a></div>
+          <div class="callout caution"><strong>Scope boundary:</strong> Do not prescribe a medical diet. Ask customers with pregnancy, kidney disease, diabetes, swallowing problems, severe allergies, or other clinical needs to review the emergency menu with their healthcare team or a registered dietitian.</div>
+          <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="4-1-a"><span>Audit a sample one-day emergency menu for calories, protein, fat, carbohydrate, water, and household fit.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="4-1-b"><span>Write the exact sentence you will use when a question needs clinical referral.</span></label></li></ul>
+          <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="4-1"><span>Mark nutrition complete</span></label><span class="lesson-status">Audit + refer</span></div>
+        </div></details></div>
+        <div class="tier-actions"><button class="nav-button" data-prev="3">Previous</button><button class="nav-button primary" data-next="5">Next: Home Preparedness</button></div>
+      </section>
+
+      <section class="tier-panel" data-panel="5">
+        <header class="tier-header"><div class="tier-number">05</div><div><p class="tier-overline">Beyond the pantry</p><h2>Home preparedness</h2><p class="tier-intro">A stocked shelf is only one layer. Help households see the connected system: detection, fire control, utilities, light and power, medication, evacuation kits, and documents.</p></div></header>
+        <section class="audio-card" aria-labelledby="audio-title-5"><div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 5 · 4:53</p><h3 id="audio-title-5">Home Preparedness</h3><p>Alarms, extinguishers, utility safety, backup power, medication, kits, and records.</p></div><div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/05-home-preparedness.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/05-home-preparedness.mp3" download>Download MP3 · 2.2 MB</a><a href="audio/family-preparedness/05-home-preparedness.txt" target="_blank">Read transcript</a></div></div></section>
+        <div class="lesson-stack"><details class="lesson" open><summary><span class="lesson-index">5.1</span><span><strong class="lesson-title">The whole-home audit</strong><span class="lesson-meta">Alarms · extinguishers · utilities · power · medicine · documents</span></span><span class="lesson-chevron">+</span></summary><div class="lesson-body">
+          <div class="topic-grid"><div class="topic"><strong>Smoke alarms</strong><span>Placement, monthly tests, 10-year replacement</span></div><div class="topic"><strong>Extinguishers</strong><span>Type, size, access, training, escape first</span></div><div class="topic"><strong>Water shutoff</strong><span>Location, tool, when to use it</span></div><div class="topic"><strong>Gas shutoff</strong><span>Only for suspected leak or official direction</span></div><div class="topic"><strong>Power outage</strong><span>Batteries, flashlights, charging, CO safety</span></div><div class="topic"><strong>Medication</strong><span>Supply, list, refrigeration, medical devices</span></div><div class="topic"><strong>72-hour kit</strong><span>Portable, personal, maintained</span></div><div class="topic"><strong>Documents</strong><span>Copies, waterproof storage, secure backup</span></div><div class="topic"><strong>Practice</strong><span>Everyone knows the plan and exits</span></div></div>
+          <h3>Read the source</h3><div class="resource-grid"><a class="resource-link" href="https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/" target="_blank" rel="noopener"><strong>Smoke alarms</strong><span>Placement, testing, batteries, replacement, and alarm types.</span><span class="source-type">Official · USFA</span></a><a class="resource-link" href="https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/" target="_blank" rel="noopener"><strong>Fire extinguishers</strong><span>Classes, selection, certification, and safe use.</span><span class="source-type">Official · USFA</span></a><a class="resource-link" href="https://www.ready.gov/safety-skills" target="_blank" rel="noopener"><strong>Safety skills and utilities</strong><span>First aid, water, electricity, natural gas, and home fire skills.</span><span class="source-type">Official · FEMA</span></a><a class="resource-link" href="https://www.ready.gov/power-outages" target="_blank" rel="noopener"><strong>Power outage planning</strong><span>Backup power, lighting, food, medication, medical devices, and generators.</span><span class="source-type">Official · FEMA</span></a><a class="resource-link" href="https://www.ready.gov/sites/default/files/2020-03/ready_emergency-financial-first-aid-toolkit-checklists-and-forms.pdf" target="_blank" rel="noopener"><strong>Emergency Financial First Aid Kit</strong><span>Checklist and forms for important household documents.</span><span class="source-type">Official · FEMA</span></a><a class="resource-link" href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/survival-kit-supplies.html" target="_blank" rel="noopener"><strong>72-hour / evacuation kit</strong><span>A portable emergency kit checklist with home-supply targets.</span><span class="source-type">Official · Red Cross</span></a></div>
+          <div class="callout caution"><strong>Utility safety:</strong> Teach location and decision criteria, not improvised repair. Utah earthquake guidance says to shut off natural gas only if a leak is suspected or the structure is seriously displaced; a qualified professional should restore service.</div>
+          <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="5-1-a"><span>Walk one home from alarm detection through evacuation, utilities, light, medication, kit, and documents.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="5-1-b"><span>Record the next inspection or replacement date for every maintained device and kit.</span></label></li></ul>
+          <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="5-1"><span>Mark home preparedness complete</span></label><span class="lesson-status">Walk + document</span></div>
+        </div></details></div>
+        <div class="tier-actions"><button class="nav-button" data-prev="4">Previous</button><button class="nav-button primary" data-next="6">Next: Customer Service</button></div>
+      </section>
+
+      <section class="tier-panel" data-panel="6">
+        <header class="tier-header"><div class="tier-number">06</div><div><p class="tier-overline">Dignity is part of the service</p><h2>Customer service</h2><p class="tier-intro">Preparedness can carry fear, grief, money stress, embarrassment, and family conflict. Your language should make action easier—not make a person defend the past.</p></div></header>
+        <section class="audio-card" aria-labelledby="audio-title-6"><div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 6 · 4:11</p><h3 id="audio-title-6">Customer Service</h3><p>Normalize, name the strength, offer a choice, use neutral evidence, and preserve agency.</p></div><div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/06-customer-service.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/06-customer-service.mp3" download>Download MP3 · 1.9 MB</a><a href="audio/family-preparedness/06-customer-service.txt" target="_blank">Read transcript</a></div></div></section>
+        <div class="lesson-stack"><details class="lesson" open><summary><span class="lesson-index">6.1</span><span><strong class="lesson-title">No shame, clear next steps</strong><span class="lesson-meta">Normalize · preserve agency · build on strengths</span></span><span class="lesson-chevron">+</span></summary><div class="lesson-body">
+          <div class="quote-compare"><div class="quote-card bad"><small>Avoid</small><blockquote>“Wow… You’ve got a lot of expired food.”</blockquote></div><div class="quote-card good"><small>Use</small><blockquote>“This is actually really common. Most families have supplies that get forgotten over time. The good news is we can build on what you already have.”</blockquote></div></div>
+          <h3>A simple response pattern</h3>
+          <div class="scenario-grid"><div class="scenario"><strong>1 · Normalize</strong><p>“This happens in a lot of homes.” Lower the social threat without dismissing the issue.</p></div><div class="scenario"><strong>2 · Name the strength</strong><p>“You already created a starting supply.” Show what can be preserved or reused.</p></div><div class="scenario"><strong>3 · Offer a choice</strong><p>“Would you rather begin with water, rotation, or the 72-hour kit?” Restore agency.</p></div></div>
+          <div class="callout"><strong>Use neutral evidence:</strong> “The FoodKeeper guidance for this item says…” is better than “I think this is probably bad.” Separate the person from the system: the label, location, container, or reminder failed—not the family.</div>
+          <h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="6-1-a"><span>Rewrite five judgmental preparedness statements using normalize → strength → choice.</span></label></li><li class="check-item"><label><input type="checkbox" data-action="6-1-b"><span>Role-play a customer who feels embarrassed, overwhelmed, or unable to afford the ideal system.</span></label></li></ul>
+          <div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="6-1"><span>Mark customer service complete</span></label><span class="lesson-status">Practice out loud</span></div>
+        </div></details></div>
+        <div class="tier-actions"><button class="nav-button" data-prev="5">Previous</button><button class="nav-button primary" data-next="7">Next: Psychology</button></div>
+      </section>
+
+      <section class="tier-panel" data-panel="7">
+        <header class="tier-header"><div class="tier-number">07</div><div><p class="tier-overline">Make preparedness stick</p><h2>Psychology</h2><p class="tier-intro">Preparedness is usually a systems and habit problem. These three books sharpen how you design routines, operations, and physical environments.</p></div></header>
+        <section class="audio-card" aria-labelledby="audio-title-7"><div class="audio-card-copy"><p class="audio-eyebrow">Audio chapter 7 · 5:02</p><h3 id="audio-title-7">Psychology</h3><p>Habits, checklists, and environmental design that make preparedness easier to maintain.</p></div><div class="audio-controls"><audio controls preload="metadata"><source src="audio/family-preparedness/07-psychology.mp3" type="audio/mpeg">Your browser does not support embedded audio.</audio><div class="audio-links"><a href="audio/family-preparedness/07-psychology.mp3" download>Download MP3 · 2.3 MB</a><a href="audio/family-preparedness/07-psychology.txt" target="_blank">Read transcript</a></div></div></section>
+        <div class="lesson-stack">
+          <details class="lesson" open><summary><span class="lesson-index">7.1</span><span><strong class="lesson-title">Atomic Habits</strong><span class="lesson-meta">Small behaviors · cues · environment · identity</span></span><span class="lesson-chevron">+</span></summary><div class="lesson-body"><p>Read for the idea that a maintained pantry is not a one-time achievement. It is the result of tiny repeatable behaviors: date it, place it, use it, add it to the list, replace it.</p><div class="resource-grid"><a class="resource-link" href="https://jamesclear.com/atomic-habits" target="_blank" rel="noopener"><strong>Atomic Habits — James Clear</strong><span>Official book page, summary, and purchase links.</span><span class="source-type">Author website</span></a></div><h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="7-1-a"><span>Design one two-minute rotation habit tied to an existing grocery or meal routine.</span></label></li></ul><div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="7-1"><span>Mark Atomic Habits complete</span></label><span class="lesson-status">Read + design</span></div></div></details>
+          <details class="lesson"><summary><span class="lesson-index">7.2</span><span><strong class="lesson-title">The Checklist Manifesto</strong><span class="lesson-meta">Consistency · pause points · critical checks</span></span><span class="lesson-chevron">+</span></summary><div class="lesson-body"><p>Read for the difference between knowledge and reliable execution. A useful checklist protects the critical steps without trying to narrate every possible action.</p><div class="resource-grid"><a class="resource-link" href="https://us.macmillan.com/books/9780312430009/thechecklistmanifesto/" target="_blank" rel="noopener"><strong>The Checklist Manifesto — Atul Gawande</strong><span>Official publisher page for the book.</span><span class="source-type">Publisher</span></a><a class="resource-link" href="https://atulgawande.com/books/" target="_blank" rel="noopener"><strong>Atul Gawande’s books</strong><span>Author’s official book listing.</span><span class="source-type">Author website</span></a></div><h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="7-2-a"><span>Create a one-page customer visit checklist with no more than nine critical pause points.</span></label></li></ul><div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="7-2"><span>Mark The Checklist Manifesto complete</span></label><span class="lesson-status">Read + simplify</span></div></div></details>
+          <details class="lesson"><summary><span class="lesson-index">7.3</span><span><strong class="lesson-title">The Design of Everyday Things</strong><span class="lesson-meta">Visibility · mapping · feedback · error-proofing</span></span><span class="lesson-chevron">+</span></summary><div class="lesson-body"><p>Read for the principle that people should not need perfect memory to use a system correctly. A shelf should make the next action obvious: what belongs here, what gets used first, how much fits, and when to replace it.</p><div class="resource-grid"><a class="resource-link" href="https://mitpress.mit.edu/9780262525671/the-design-of-everyday-things/" target="_blank" rel="noopener"><strong>The Design of Everyday Things — Don Norman</strong><span>Official MIT Press book page.</span><span class="source-type">Publisher</span></a></div><h3>Field action</h3><ul class="checklist"><li class="check-item"><label><input type="checkbox" data-action="7-3-a"><span>Redesign one confusing shelf so labels, position, and container size reveal the intended behavior.</span></label></li></ul><div class="lesson-complete"><label><input type="checkbox" class="lesson-check" data-lesson="7-3"><span>Mark Design of Everyday Things complete</span></label><span class="lesson-status">Read + redesign</span></div></div></details>
+        </div>
+        <div class="finish-card" id="finish-card"><h3>You finished the field guide.</h3><p>The next step is not more theory: repeat the audits, practice the conversations, and keep your source links current.</p></div>
+        <div class="tier-actions"><button class="nav-button" data-prev="6">Previous</button><button class="nav-button primary" id="review-incomplete">Review first incomplete lesson</button></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer"><p>Educational material only. Follow local officials during an emergency. Food safety, medical, nutrition, structural, utility, and fire questions may require the appropriate qualified professional. Commercial links are included for product literacy, not endorsement.</p></footer>
+
+  <script>
+    (() => {
+      const storageKey = 'prepared-home-field-guide-v1';
+      const tierButtons = [...document.querySelectorAll('.tier-button')];
+      const panels = [...document.querySelectorAll('.tier-panel')];
+      const lessonChecks = [...document.querySelectorAll('.lesson-check')];
+      const allChecks = [...document.querySelectorAll('input[type="checkbox"][data-lesson], input[type="checkbox"][data-action]')];
+      const progressFill = document.getElementById('progress-fill');
+      const progressText = document.getElementById('progress-text');
+      const progressBar = document.querySelector('[role="progressbar"]');
+      const finishCard = document.getElementById('finish-card');
+
+      function getState() {
+        try { return JSON.parse(localStorage.getItem(storageKey)) || {}; }
+        catch (_) { return {}; }
+      }
+
+      function saveState() {
+        const state = {};
+        allChecks.forEach(input => { state[input.dataset.lesson || input.dataset.action] = input.checked; });
+        localStorage.setItem(storageKey, JSON.stringify(state));
+        updateProgress();
+      }
+
+      function restoreState() {
+        const state = getState();
+        allChecks.forEach(input => { input.checked = Boolean(state[input.dataset.lesson || input.dataset.action]); });
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const complete = lessonChecks.filter(input => input.checked).length;
+        const total = lessonChecks.length;
+        const percent = total ? (complete / total) * 100 : 0;
+        progressFill.style.width = `${percent}%`;
+        progressText.textContent = `${complete} of ${total}`;
+        progressBar.setAttribute('aria-valuemax', total);
+        progressBar.setAttribute('aria-valuenow', complete);
+        finishCard.classList.toggle('visible', complete === total);
+      }
+
+      function showTier(tier, shouldScroll = true) {
+        tierButtons.forEach(button => {
+          const active = button.dataset.tier === String(tier);
+          button.toggleAttribute('aria-current', active);
+          if (active) button.setAttribute('aria-current', 'step');
+        });
+        panels.forEach(panel => panel.classList.toggle('active', panel.dataset.panel === String(tier)));
+        if (shouldScroll) document.getElementById('course').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      tierButtons.forEach(button => button.addEventListener('click', () => showTier(button.dataset.tier)));
+      document.querySelectorAll('[data-next]').forEach(button => button.addEventListener('click', () => showTier(button.dataset.next)));
+      document.querySelectorAll('[data-prev]').forEach(button => button.addEventListener('click', () => showTier(button.dataset.prev)));
+      allChecks.forEach(input => input.addEventListener('change', saveState));
+
+      document.getElementById('reset-progress').addEventListener('click', () => {
+        if (!window.confirm('Reset every lesson and field-action checkmark?')) return;
+        allChecks.forEach(input => { input.checked = false; });
+        localStorage.removeItem(storageKey);
+        updateProgress();
+      });
+
+      document.getElementById('review-incomplete').addEventListener('click', () => {
+        const next = lessonChecks.find(input => !input.checked);
+        if (!next) {
+          finishCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        const panel = next.closest('.tier-panel');
+        showTier(panel.dataset.panel, false);
+        const lesson = next.closest('.lesson');
+        lesson.open = true;
+        lesson.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => next.focus(), 450);
+      });
+
+      const audioPlayers = [...document.querySelectorAll('audio')];
+      audioPlayers.forEach(player => player.addEventListener('play', () => {
+        audioPlayers.forEach(other => { if (other !== player) other.pause(); });
+      }));
+
+      restoreState();
+    })();
+  </script>
+</body>
+</html>
