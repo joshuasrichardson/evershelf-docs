@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: evershelf-docs
+    runtime: static
+    buildCommand: hugo --minify
+    staticPublishPath: public
+    envVars:
+      - key: HUGO_VERSION
+        value: "0.158.0"

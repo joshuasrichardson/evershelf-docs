@@ -1,0 +1,519 @@
+{{ $cfg := .Site.Data.site }}
+<!doctype html>
+<html lang="en">
+<head>
+  {{ partial "head-seo.html" . }}
+  <link rel="preload" href="/images/evershelf-organized-pantry.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="/css/landing.css?v=20260720">
+  {{ $address := dict "@type" "PostalAddress" "addressLocality" "Utah County" "addressRegion" "UT" "addressCountry" "US" }}
+  {{ $schema := dict "@context" "https://schema.org" "@type" "LocalBusiness" "name" $cfg.brand_name "description" .Site.Params.description "url" .Site.BaseURL "telephone" $cfg.phone "email" $cfg.email "address" $address "areaServed" $cfg.service_area "priceRange" "$$" }}
+  <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+  <script src="/js/landing.js" defer></script>
+</head>
+<body id="home">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <symbol id="icon-shelf" viewBox="0 0 24 24">
+        <path d="M5 4v16M19 4v16M5 8h14M5 14h14M8 5.5v2.5M13 10v4M16 15.5V20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M14 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-box" viewBox="0 0 24 24">
+        <path d="m4 7 8-4 8 4-8 4-8-4Zm0 0v10l8 4 8-4V7M12 11v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-list" viewBox="0 0 24 24">
+        <path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-home" viewBox="0 0 24 24">
+        <path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-cart" viewBox="0 0 24 24">
+        <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 8H6M10 20h.01M17 20h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24">
+        <path d="M20.8 4.7a5.5 5.5 0 0 0-7.8 0L12 5.8l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.4 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-instagram" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-facebook" viewBox="0 0 24 24">
+        <path d="M14 21v-8h3l.5-3H14V8.2c0-.9.3-1.7 1.8-1.7H18V3.8c-.4-.1-1.7-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5V10H8v3h3v8h3Z" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#home" aria-label="{{ $cfg.brand_name }} home">
+        <img class="brand-logo" src="/images/evershelf-logo.png" width="192" height="192" alt="">
+        {{ $cfg.brand_name }}
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#membership">Membership</a>
+        <a href="#faq">FAQ</a>
+        <a class="button button-small" href="#book">Book an Audit</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-navigation" data-nav-toggle>
+        <svg aria-hidden="true"><use href="#icon-menu"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" data-mobile-nav hidden>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#membership">Membership</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book">Book an Audit</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">You want to be ready. You don’t have time to sort it all out.</p>
+          <h1 id="hero-title">We handle your food storage. You enjoy peace of mind.</h1>
+          <p class="lead">EverShelf audits, organizes, and maintains your family's food storage so you always know what you have, what's missing, and what to do next.</p>
+          <div class="hero-actions">
+            <a class="button" href="#book" data-primary-need="Audit">Book Your EverShelf Audit <svg aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <a class="button button-secondary" href="#how-it-works">See How It Works</a>
+          </div>
+          <div class="hero-service-grid" aria-label="EverShelf services">
+            <div class="hero-service-item"><strong>Complete audit</strong><span>How much, how long, and what’s expired</span></div>
+            <div class="hero-service-item"><strong>Tailored plan</strong><span>Target days, allergies, and tastes</span></div>
+            <div class="hero-service-item"><strong>Hands-on organization</strong><span>Clear zones and easy rotation</span></div>
+            <div class="hero-service-item"><strong>Shopping handled</strong><span>We pick up the items you approve</span></div>
+          </div>
+          <p class="trust-line">
+            <span>Serving Utah County</span>
+            <span>Judgment-free</span>
+            <span>Personalized to your household</span>
+          </p>
+        </div>
+        <div class="hero-visual">
+          <img src="/images/evershelf-organized-pantry.jpg" width="1800" height="1200" alt="A warmly lit pantry with organized food storage on labeled wood shelves" fetchpriority="high">
+          <div class="hero-note">
+            <strong>{{ $cfg.tagline }}</strong>
+            <span>A practical plan for your real household.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sage" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">A common household problem</p>
+          <h2 id="problem-title">You bought food storage to feel prepared—not overwhelmed.</h2>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card">
+            <span class="number-chip">01</span>
+            <h3>You don’t know what you already own.</h3>
+            <p>Items disappear behind boxes, on deep shelves, and across multiple storage areas.</p>
+          </article>
+          <article class="problem-card">
+            <span class="number-chip">02</span>
+            <h3>Food expires before it gets used.</h3>
+            <p>Without a clear rotation system, good intentions turn into avoidable waste.</p>
+          </article>
+          <article class="problem-card">
+            <span class="number-chip">03</span>
+            <h3>Supplies are difficult to rotate.</h3>
+            <p>Finding the oldest items first should not require emptying every shelf.</p>
+          </article>
+          <article class="problem-card">
+            <span class="number-chip">04</span>
+            <h3>You’re unsure what your family still needs.</h3>
+            <p>Generic checklists rarely reflect your household, preferences, space, or budget.</p>
+          </article>
+        </div>
+        <p class="problem-close">EverShelf turns an intimidating project into a clear, personalized plan—without judgment, pressure, or fear-based advice.</p>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">A clear path from cluttered shelves to quiet confidence.</h2>
+          <p>We do the detailed work and leave you with a system that makes sense.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>We Audit</h3>
+            <p>We inventory every item, identify expired food, calculate how long your supply will last, and show how much more you need to reach your target number of days.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>We Organize</h3>
+            <p>We organize everything into an easy-to-use system so food is simpler to find, rotate, and maintain.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>We Build Your Plan</h3>
+            <p>You get a balanced plan based on your household size, preparedness goals, allergies, tastes, storage space, and budget.</p>
+            <ul class="deliverables">
+              <li>Personalized inventory</li>
+              <li>Food security report</li>
+              <li>Shopping recommendations</li>
+              <li>Use-first list</li>
+              <li>Improvement plan</li>
+            </ul>
+          </article>
+        </div>
+        <div class="help-note">
+          <p><strong>Need help completing your plan?</strong><br>We can purchase, deliver, and organize your approved recommended supplies for you.</p>
+          <a class="button" href="#book" data-primary-need="Shopping Assistance">Ask About Shopping Help</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">Services</p>
+          <h2 id="services-title">Choose the level of help that feels right.</h2>
+          <p>Start with clarity, add hands-on organization, or let us help complete the plan.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <p class="service-name">EverShelf Audit</p>
+            <p>A focused in-home food inventory service that shows what you have and what comes next.</p>
+            <ul class="check-list">
+              <li>In-home audit</li>
+              <li>Food storage inventory</li>
+              <li>Expiration and shelf-life review</li>
+              <li>Days-of-food calculation</li>
+              <li>Household, allergy, and taste assessment</li>
+              <li>Food security report</li>
+              <li>Personalized shopping list</li>
+            </ul>
+            <a class="button button-secondary" href="#book" data-primary-need="Audit">Book an Audit</a>
+          </article>
+          <article class="service-card featured">
+            <span class="popular-badge">Most Popular</span>
+            <p class="service-name">EverShelf Organization</p>
+            <p>Everything in your audit, plus a practical pantry organization system built for everyday use.</p>
+            <ul class="check-list">
+              <li>Everything in EverShelf Audit</li>
+              <li>Food storage organization</li>
+              <li>Rotation system</li>
+              <li>Shelf optimization</li>
+              <li>Label recommendations</li>
+            </ul>
+            <a class="button" href="#book" data-primary-need="Organization">Get Organized</a>
+          </article>
+          <article class="service-card">
+            <p class="service-name">EverShelf Concierge</p>
+            <p class="price custom">{{ $cfg.pricing.concierge }}</p>
+            <p>Hands-on support to source and put away the supplies needed to complete your approved plan.</p>
+            <ul class="check-list">
+              <li>Shopping for recommended items</li>
+              <li>Delivery coordination</li>
+              <li>Putting everything away</li>
+              <li>Updated inventory</li>
+              <li>Updated food security report</li>
+            </ul>
+            <p class="approval-note">You approve every purchase before anything is bought.</p>
+            <a class="button button-secondary" href="#book" data-primary-need="Shopping Assistance">Request a Quote</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" aria-labelledby="score-title">
+      <div class="container score-shell">
+        <div>
+          <p class="eyebrow">Your Food Security Audit</p>
+          <h2 id="score-title">See how long your household can rely on what you already have.</h2>
+          <p class="lead" style="color:rgba(255,255,255,.72)">EverShelf calculates your days of food security from your inventory, household size, and calorie target—then shows which essential categories are strong, low, or critical.</p>
+          <ul class="score-feature-list">
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Normal eating and emergency-rationing estimates</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Water coverage per person</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Expiring items and food-storage gaps</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Shopping suggestions you can add to your list</li>
+          </ul>
+          <a class="button button-light" href="#book" data-primary-need="Audit">Get Your Food Security Audit</a>
+        </div>
+        <div class="score-card" aria-label="Sample food security audit showing 72 days of food security">
+          <div class="score-top">
+            <div>
+              <span class="score-label">Days of Food Security</span>
+              <span class="score-value">72 <small>days</small></span>
+            </div>
+            <span class="score-status">Normal eating</span>
+          </div>
+          <div class="score-meta" aria-label="Sample audit details">
+            <div><span>Household</span><strong>4 people</strong></div>
+            <div><span>Rationing estimate</span><strong>96 days</strong></div>
+            <div><span>Inventory coverage</span><strong>94%</strong></div>
+          </div>
+          <span class="score-label score-breakdown-label">Essential Category Coverage</span>
+          <div class="score-rows">
+            <div><div class="score-row-top"><span>Grains</span><span><strong>96 days</strong><em class="good">Good</em></span></div><div class="score-track"><span style="width:100%"></span></div></div>
+            <div class="low-row"><div class="score-row-top"><span>Protein</span><span><strong>41 days</strong><em class="low">Low</em></span></div><div class="score-track"><span style="width:46%"></span></div></div>
+            <div class="low-row"><div class="score-row-top"><span>Fats &amp; Oils</span><span><strong>68 days</strong><em class="low">Low</em></span></div><div class="score-track"><span style="width:76%"></span></div></div>
+            <div><div class="score-row-top"><span>Sugars &amp; Salt</span><span><strong>104 days</strong><em class="good">Good</em></span></div><div class="score-track"><span style="width:100%"></span></div></div>
+            <div class="low-row"><div class="score-row-top"><span>Vitamin C Foods</span><span><strong>18 days</strong><em class="low">Low</em></span></div><div class="score-track"><span style="width:60%"></span></div></div>
+            <div><div class="score-row-top"><span>Water</span><span><strong>14 days/person</strong><em class="good">Good</em></span></div><div class="score-track"><span style="width:100%"></span></div></div>
+          </div>
+          <div class="score-insight"><strong>Food variety: 80/100</strong><span>Next priorities: protein and vitamin C foods</span></div>
+          <p class="score-disclaimer">Sample only. Food-security calculations and recommendations are informational planning tools, not guarantees of safety or preparedness.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="benefits-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">What changes</p>
+          <h2 id="benefits-title">Preparedness that makes daily life easier, too.</h2>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit-card"><svg aria-hidden="true"><use href="#icon-search"/></svg><h3>Know exactly what you own</h3><p>A useful inventory replaces guesswork and duplicate purchases.</p></article>
+          <article class="benefit-card"><svg aria-hidden="true"><use href="#icon-trash"/></svg><h3>Waste less food</h3><p>Use-first priorities make it easier to rotate food before it expires.</p></article>
+          <article class="benefit-card"><svg aria-hidden="true"><use href="#icon-clock"/></svg><h3>Save time shopping</h3><p>Buy from a clear list based on real gaps—not uncertainty.</p></article>
+          <article class="benefit-card"><svg aria-hidden="true"><use href="#icon-heart"/></svg><h3>Store food your family eats</h3><p>Build around your household’s real habits, needs, and preferences.</p></article>
+          <article class="benefit-card"><svg aria-hidden="true"><use href="#icon-box"/></svg><h3>Find supplies quickly</h3><p>Logical zones and labels make every shelf easier to use.</p></article>
+          <article class="benefit-card"><svg aria-hidden="true"><use href="#icon-check"/></svg><h3>Stay prepared with less effort</h3><p>A maintainable system prevents the project from becoming overwhelming again.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sage" aria-labelledby="audience-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">Who it’s for</p>
+          <h2 id="audience-title">Designed for real families—not extreme preppers.</h2>
+          <p>No perfect pantry required. We meet you exactly where you are.</p>
+        </div>
+        <div class="audience-grid">
+          <article class="audience-card"><svg aria-hidden="true"><use href="#icon-users"/></svg><h3>Busy families</h3></article>
+          <article class="audience-card"><svg aria-hidden="true"><use href="#icon-home"/></svg><h3>New homeowners</h3></article>
+          <article class="audience-card"><svg aria-hidden="true"><use href="#icon-box"/></svg><h3>Existing food storage</h3></article>
+          <article class="audience-card"><svg aria-hidden="true"><use href="#icon-user"/></svg><h3>Older adults</h3></article>
+          <article class="audience-card"><svg aria-hidden="true"><use href="#icon-heart"/></svg><h3>Parents</h3></article>
+          <article class="audience-card"><svg aria-hidden="true"><use href="#icon-check"/></svg><h3>Peace-of-mind seekers</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="comparison-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">Before and after</p>
+          <h2 id="comparison-title">From “I should deal with that” to “I know exactly what to do.”</h2>
+        </div>
+        <div class="comparison">
+          <article class="comparison-card before">
+            <h3>Before EverShelf</h3>
+            <ul class="comparison-list">
+              <li><svg aria-hidden="true"><use href="#icon-box"/></svg>Expired cans</li>
+              <li><svg aria-hidden="true"><use href="#icon-box"/></svg>Random boxes</li>
+              <li><svg aria-hidden="true"><use href="#icon-box"/></svg>Duplicate purchases</li>
+              <li><svg aria-hidden="true"><use href="#icon-box"/></svg>Hidden supplies</li>
+              <li><svg aria-hidden="true"><use href="#icon-box"/></svg>No plan</li>
+            </ul>
+          </article>
+          <article class="comparison-card after">
+            <h3>After EverShelf</h3>
+            <ul class="comparison-list">
+              <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Organized shelves</li>
+              <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Easy rotation</li>
+              <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Personalized inventory</li>
+              <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Shopping plan</li>
+              <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Confidence</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="membership" aria-labelledby="membership-title">
+      <div class="container">
+        <div class="membership-card">
+          <div>
+            <p class="eyebrow">EverShelf Membership</p>
+            <h2 id="membership-title">Stay prepared without having to think about it.</h2>
+            <p>Future membership will help keep your household inventory current between visits and make ongoing maintenance feel automatic.</p>
+            <a class="button button-light" href="#book" data-primary-need="Ongoing Maintenance">Join the Membership Waitlist</a>
+          </div>
+          <ul class="membership-list">
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Expiration reminders</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Shopping recommendations</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Seasonal preparedness tips</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Inventory updates</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Discounted annual audits</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Access to the EverShelf App</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {{/* Customer stories are hidden until EverShelf has real customer testimonials.
+    <section class="section section-sage" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">Customer stories</p>
+          <h2 id="testimonials-title">The kind of relief we’re building EverShelf to deliver.</h2>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <span class="placeholder-label">Placeholder — Replace Before Launch</span>
+            <blockquote>“I finally understand what is on our shelves and what our family should focus on next.”</blockquote>
+            <span class="testimonial-theme">Relief</span>
+          </article>
+          <article class="testimonial-card">
+            <span class="placeholder-label">Placeholder — Replace Before Launch</span>
+            <blockquote>“The new system is simple enough that everyone in our house can actually keep it organized.”</blockquote>
+            <span class="testimonial-theme">Organization</span>
+          </article>
+          <article class="testimonial-card">
+            <span class="placeholder-label">Placeholder — Replace Before Launch</span>
+            <blockquote>“Having someone handle the shopping plan saved us hours and kept us from buying more duplicates.”</blockquote>
+            <span class="testimonial-theme">Shopping assistance</span>
+          </article>
+        </div>
+      </div>
+    </section>
+    */}}
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">Frequently asked questions</p>
+          <h2 id="faq-title">A straightforward, judgment-free visit.</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>Do I need existing food storage?</summary><div class="faq-answer">No. We can audit what you currently have—even if it is only one pantry shelf—and help you build a practical plan from there.</div></details>
+          <details><summary>Will you throw away expired food?</summary><div class="faq-answer">Nothing is discarded without your permission. We identify dates and concerns, then let you make the final decision using manufacturer guidance and your own judgment.</div></details>
+          <details><summary>Can you shop for me?</summary><div class="faq-answer">Yes. Our Concierge service can shop for recommended items, coordinate delivery, and put supplies away. You approve every purchase before anything is bought.</div></details>
+          <details><summary>Do you sell food?</summary><div class="faq-answer">No. EverShelf provides inventory, organization, and planning services. When requested, we purchase approved items from retailers on your behalf.</div></details>
+          <details><summary>How long does an audit take?</summary><div class="faq-answer">Timing depends on the amount and number of storage areas. We will discuss the scope and estimated visit length before confirming your appointment.</div></details>
+          <details><summary>Do I need to clean first?</summary><div class="faq-answer">Not at all. Please leave the space as you normally use it. Seeing the current setup helps us recommend a system that works in real life.</div></details>
+          <details><summary>Is this only for large food storage rooms?</summary><div class="faq-answer">No. EverShelf works for pantry cabinets, garages, basements, closets, storage rooms, and households using several smaller areas.</div></details>
+          <details><summary>Do you guarantee preparedness?</summary><div class="faq-answer">No. EverShelf provides organizational and preparedness-planning guidance. Inventories, food-security calculations, and recommendations are informational tools—not guarantees.</div></details>
+          <details><summary>What areas do you serve?</summary><div class="faq-answer">We currently serve {{ $cfg.service_area }}. Contact us if you are nearby and we will let you know whether your address is within the service area.</div></details>
+          <details><summary>Will you take photos?</summary><div class="faq-answer">Only with your permission and only when helpful for documenting inventory or organization. We will explain how any photos will be used before taking them.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sage" id="book" aria-labelledby="booking-title">
+      <div class="container booking-shell">
+        <div class="booking-copy">
+          <p class="eyebrow">Book an audit</p>
+          <h2 id="booking-title">Tell us about your food storage.</h2>
+          <p class="lead">Introductory appointments are now available in Utah County. Share a few details and we’ll follow up to discuss the right service for your household.</p>
+          <ul class="booking-points">
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>No judgment and no pressure</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>Recommendations tailored to your household</li>
+            <li><svg aria-hidden="true"><use href="#icon-check"/></svg>No purchases without your approval</li>
+          </ul>
+        </div>
+        <div>
+          <form class="booking-form" id="booking-form">
+            <div class="form-grid">
+              <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+              <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+              <div class="field"><label for="city">City</label><input id="city" name="city" type="text" autocomplete="address-level2" required></div>
+              <div class="field"><label for="household-size">Household Size</label><select id="household-size" name="household_size" required><option value="">Select one</option><option>1 person</option><option>2 people</option><option>3–4 people</option><option>5–6 people</option><option>7+ people</option></select></div>
+              <div class="field"><label for="storage-location">Food Storage Location</label><select id="storage-location" name="storage_location" required><option value="">Select one</option><option>Pantry</option><option>Basement</option><option>Garage</option><option>Storage Room</option><option>Multiple Areas</option></select></div>
+              <div class="field"><label for="primary-need">Primary Need</label><select id="primary-need" name="primary_need" required><option value="">Select one</option><option>Audit</option><option>Organization</option><option>Shopping Assistance</option><option>Ongoing Maintenance</option></select></div>
+              <div class="field"><label for="amount">Approximate Amount of Food Storage</label><select id="amount" name="amount" required><option value="">Select one</option><option>A few items</option><option>A few shelves</option><option>One pantry</option><option>Several shelving units</option><option>A full storage room</option><option>Multiple storage areas</option><option>Not sure</option></select></div>
+              <div class="field field-full"><label for="contact-method">Preferred Contact Method</label><select id="contact-method" name="contact_method" required><option value="">Select one</option><option>Email</option><option>Phone call</option><option>Text message</option></select></div>
+              <div class="field field-full"><label for="message">Message <span aria-hidden="true">(optional)</span></label><textarea id="message" name="message" placeholder="Tell us what you would most like help with."></textarea></div>
+              <label class="checkbox-field" for="consent"><input id="consent" name="consent" type="checkbox" required><span>I agree to be contacted regarding my request.</span></label>
+            </div>
+            <button class="button" type="submit">Request My EverShelf Audit <svg aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+            <p class="form-note">Submitting this form does not confirm an appointment or charge you.</p>
+          </form>
+          <div class="booking-success" id="booking-success" role="status" tabindex="-1" hidden>
+            <span class="success-icon"><svg aria-hidden="true"><use href="#icon-check"/></svg></span>
+            <h3>Thanks—your request has been received.</h3>
+            <p>We’ll review your details and follow up soon to discuss the best next step for your household.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-cta-title">
+      <div class="container">
+        <p class="eyebrow">A clearer next step</p>
+        <h2 id="final-cta-title">Stop wondering whether your family is prepared.</h2>
+        <p>In one visit you’ll know what you have, what you’re missing, and exactly what to do next.</p>
+        <a class="button button-light" href="#book" data-primary-need="Audit">Book Your EverShelf Audit</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home"><img class="brand-logo" src="/images/evershelf-logo.png" width="192" height="192" alt="">{{ $cfg.brand_name }}</a>
+          <p class="footer-tagline">{{ $cfg.tagline }}</p>
+          <p>{{ $cfg.service_area }}</p>
+          <div class="social-links">
+            <a href="{{ $cfg.social_links.instagram }}" aria-label="EverShelf on Instagram"><svg aria-hidden="true"><use href="#icon-instagram"/></svg></a>
+            <a href="{{ $cfg.social_links.facebook }}" aria-label="EverShelf on Facebook"><svg aria-hidden="true"><use href="#icon-facebook"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Explore</p>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="#services">Services</a><a href="#how-it-works">How It Works</a><a href="#membership">Membership</a><a href="#faq">FAQ</a><a href="#book">Book an Audit</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-heading">Contact</p>
+          <div class="footer-links">
+            <a href="tel:{{ $cfg.phone_href }}">{{ $cfg.phone }}</a>
+            <a href="mailto:{{ $cfg.email }}">{{ $cfg.email }}</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="disclaimer">EverShelf provides organizational and preparedness-planning services. Recommendations and food-security calculations are informational tools and do not guarantee safety, food quality, or survival during emergencies. Customers are responsible for following manufacturer storage recommendations and using their own judgment regarding food safety.</p>
+        <p class="copyright">&copy; {{ now.Year }} {{ $cfg.brand_name }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-sticky">
+    <a class="button" href="#book" data-primary-need="Audit">Book an Audit</a>
+  </div>
+</body>
+</html>
