@@ -1,0 +1,116 @@
+{{ define "styles" }}
+    .blog-header {
+      background: linear-gradient(135deg, #166534 0%, #16a34a 100%);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+    }
+    .blog-header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .blog-header p {
+      opacity: 0.85;
+      max-width: 480px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+    .blog-categories {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .blog-categories a {
+      display: inline-block;
+      background: #fff;
+      color: #475569;
+      text-decoration: none;
+      padding: 0.375rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+    .blog-categories a:hover,
+    .blog-categories a.active {
+      background: #166534;
+      color: #fff;
+      border-color: #166534;
+    }
+    .blog-list {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    .blog-list-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .blog-list-item h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    .blog-list-item h2 a {
+      color: #0f172a;
+      text-decoration: none;
+    }
+    .blog-list-item h2 a:hover { color: #16a34a; }
+    .blog-list-meta {
+      font-size: 0.8125rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    .blog-list-meta a { color: #64748b; text-decoration: none; }
+    .blog-list-meta a:hover { color: #16a34a; }
+    .blog-list-item p {
+      font-size: 0.9375rem;
+      color: #475569;
+    }
+{{ end }}
+
+{{ define "main" }}
+<section class="blog-header">
+  <h1>{{ if .IsSection }}{{ with .Title }}{{ . }}{{ else }}Food Storage Blog{{ end }}{{ else }}{{ .Title }}{{ end }}</h1>
+  <p>{{ with .Description }}{{ . }}{{ else }}Expert food storage tips, meal planning guides, and advice to reduce food waste.{{ end }}</p>
+</section>
+
+{{ if .IsSection }}
+<div class="blog-categories">
+  <a href="/blog/"{{ if eq .RelPermalink "/blog/" }} class="active"{{ end }}>All</a>
+  {{ range .Sections }}
+  <a href="{{ .Permalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="active"{{ end }}>{{ .Title }}</a>
+  {{ end }}
+</div>
+{{ end }}
+
+<div class="blog-list">
+  {{ $pages := .Pages }}
+  {{ if .IsSection }}
+    {{ $pages = .Pages.ByDate.Reverse }}
+  {{ end }}
+  {{ range $pages }}
+  {{ if not .Draft }}
+  <article class="blog-list-item">
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <div class="blog-list-meta">
+      {{ with .Params.author }}By {{ . }} &middot; {{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .Params.categories }}
+        &middot;
+        {{ range . }}<a href="{{ "categories/" | absURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+      {{ end }}
+    </div>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </article>
+  {{ end }}
+  {{ end }}
+</div>
+{{ end }}

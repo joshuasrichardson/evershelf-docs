@@ -4,11 +4,12 @@ title = "Food Storage Audit & Organization in Utah County | EverShelf"
 enableRobotsTXT = true
 
 [params]
-  description = "EverShelf helps Utah County families inventory, organize, and improve their emergency food storage through in-home audits, organization, personalized shopping recommendations, and ongoing preparedness tools."
+  description = "Build a personalized household preparedness plan and join early access for optional monthly EverShelf fulfillment."
   author = "Joshua Richardson"
   publisher = "EverShelf"
   publisherOrg = "Joshumi Technologies LLC"
   appStoreURL = "https://apps.apple.com/us/app/evershelf/id6759439940"
+  apiURL = "https://evershelf-api.onrender.com"
 
 [taxonomies]
   category = "categories"

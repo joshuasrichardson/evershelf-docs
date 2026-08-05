@@ -109,7 +109,7 @@ They maintain significant food storage (weeks to months worth) but have no good 
 - Days-of-preparedness calculation based on household size
 
 ### Feature hooks
-- Survival Six audit (grains, protein, fats/oils, sugars/salt, vitamin C, water)
+- Food Readiness audit (water, calories, protein, essential fats, micronutrients, no-cook readiness)
 - Days of survival calculation by household size and calorie needs
 - Diversity score for nutritional balance
 - Gap analysis with purchase suggestions
@@ -117,7 +117,7 @@ They maintain significant food storage (weeks to months worth) but have no good 
 - Expiration alerts for rotation management
 
 ### How to talk to them
-"EverShelf audits your food storage against six nutritional categories, calculates your days of preparedness, and tells you exactly where the gaps are."
+"EverShelf measures your stored water, calories, protein, fats, micronutrients, and no-cook food, then shows exactly where your household has readiness gaps."
 
 ---
 

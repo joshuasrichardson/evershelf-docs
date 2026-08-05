@@ -1,0 +1,10 @@
+{{ if eq .Params.schema "howto" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": {{ .Title | jsonify }},
+  "description": {{ .Description | jsonify }}
+}
+</script>
+{{ end }}

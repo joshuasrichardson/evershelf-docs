@@ -1,0 +1,66 @@
+{{ define "styles" }}
+    .term-header {
+      background: linear-gradient(135deg, #166534 0%, #16a34a 100%);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+    }
+    .term-header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .term-header p {
+      opacity: 0.85;
+      font-size: 1rem;
+    }
+    .blog-list {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    .blog-list-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .blog-list-item h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    .blog-list-item h2 a {
+      color: #0f172a;
+      text-decoration: none;
+    }
+    .blog-list-item h2 a:hover { color: #16a34a; }
+    .blog-list-meta {
+      font-size: 0.8125rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+    .blog-list-item p {
+      font-size: 0.9375rem;
+      color: #475569;
+    }
+{{ end }}
+
+{{ define "main" }}
+<section class="term-header">
+  <h1>{{ .Title }}</h1>
+  <p>{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</p>
+</section>
+
+<div class="blog-list">
+  {{ range .Pages.ByDate.Reverse }}
+  <article class="blog-list-item">
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <div class="blog-list-meta">
+      {{ with .Params.author }}By {{ . }} &middot; {{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+    </div>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </article>
+  {{ end }}
+</div>
+{{ end }}
